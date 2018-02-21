@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC8259 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8259.xml">
+<!ENTITY RFC8288 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8288.xml">
+<!ENTITY RFC7231 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7231.xml">
+]>
+<?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> <!-- used by XSLT processors -->
+<!-- OPTIONS, known as processing instructions (PIs) go here. -->
+<!-- For a complete list and description of PIs,
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable PIs that most I-Ds might want to use. -->
+<?rfc strict="yes" ?> <!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC): -->
+<?rfc toc="yes"?> <!-- generate a ToC -->
+<?rfc tocdepth="2"?> <!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references: -->
+<?rfc symrefs="yes"?> <!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?> <!-- sort the reference entries alphabetically -->
+<!-- control vertical white space: 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?> <!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?> <!-- keep one blank line between list items -->
+<!-- end of popular PIs -->
+<rfc  category="std" docName="draft-wparad-json-links-01" ipr="trust200902">
+  <front>
+    <title abbrev="JSON+Links">JSON Hypermedia Links Notation</title>
+    <author fullname="Warren Parad" initials="WP" surname="Parad">
+<!-- <organization/> -->
+      <address>
+        <!-- postal><street/><city/><region/><code/><country/></postal -->
+<!-- <phone/> -->
+<!-- <facsimile/> -->
+      <email>rfc@warrenparad.net</email>
+<!-- <uri/> -->
+      </address>
+    </author>
+    <author fullname="Igor Sowinski" initials="IS" surname="Sowinski">
+<!-- <organization/> -->
+      <address>
+        <!-- postal><street/><city/><region/><code/><country/></postal -->
+<!-- <phone/> -->
+<!-- <facsimile/> -->
+      <email>isowinski@cimpress.com</email>
+<!-- <uri/> -->
+      </address>
+    </author>
+    <date year="2018" />
+<!-- <area/> -->
+<!-- <workgroup/> -->
+      <keyword>Hypermedia</keyword>
+      <keyword>Web Linking</keyword>
+      <keyword>json+links</keyword>
+<!-- <keyword/> -->
+    <abstract>
+      <t>
+        This document proposes the application/json+links media type for representing resources and their relations with hyperlinks. It treats links as first class object which can appear throughout a JSON document.
+      </t>
+    </abstract>
+  </front>
+  <middle>
+    <section title="Introduction">
+      <t>
+        This document introduces the Content-Type "application/json+links" to support hypermedia linking inside JSON as defined by the <xref target="RFC8259"/>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following URI in the form of urls.  To ensure urls discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/json+links".
+      </t>
+      <t>
+        The "links" JSON object name becomes a reserved word and cannot be used without implying the semantics of this document.  The "links" can be found at any depth of a JSON representation and always implying the same meaning within the context.  It is a dictionary which provides <xref target="RFC8288">web linking</xref> by defining the semanitcs of a linked representation.
+      </t>
+      <t>
+        The design of "application/json+links" proposes a straightforward model which combines the simplicity of JSON object with a predefined "links" structure.
+      </t>
+      <t>
+        This document is being discussed in the <eref target="https://gitter.im/wparad/draft-wparad-json-links">draft-wparad-json-links Gitter room</eref>.
+      </t>
+    </section>
+    <section title="Terminology">  
+      <t>
+        The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
+        this document are to be interpreted as described in
+        <xref target="RFC2119"/>.
+      </t>
+      <section title="Link Object">
+        <t>
+          The Link Object is the JSON object which follows a JSON name inside of the "links" JSON object value.  It is a "resource" description used to navigate to another hypermedia link.
+        </t>
+        <t>
+          The "links" is the self described JSON name which is a JSON object value which contains "link"s and their "Link Object"s.
+        </t>
+        <t>
+          The "link" object is the JSON value for "link" which contains the "Link Object", each must have a unique value within the "links" JSON object value.
+        </t>
+      </section>
+    </section>
+    <section title="Links Documents">
+      <t>
+        A JSON Links Document uses the format described in <xref target="RFC8259"/> and has the media type "application/json+links".  The media type provides an isomorphic transform on JSON and introduces only a Hypermedia Links Notation for expanding a "links" object value.  Therefore "application/json+links" is of Content-Type "application/json".
+      </t>
+      <t>
+        The "links" object in a JSON object.  The object contains JSON names which each uniquely define the underlying resource.  The JSON values associated with those names MUST be a JSON object which explain how to navigate to that resource.
+      </t>
+    </section>
+    <section title="Links Resources">
+      <t>
+        Each JSON name specified in the "links" object references a different hypermedia resource.  Each "resource" or "link" MUST be a JSON object which contains ONLY these predefined fields.  Each "links" object MUST be specified at with the most specific child JSON object value as relates to the link relation.  When a JSON name "item" exists and a "link" to that "item" needs to be specified, the "link" should contain a "self" and be present inside the "item" JSON object value.  The "item" link SHALL NOT be provided in the top most "link" object.
+      </t>
+      <section title="rel">
+        <t>
+          The "rel" JSON name is OPTIONAL and defines a link relation per <xref target="RFC8288"/>.  When not defined the link relation is assumed from the "link" JSON object name.  To provide conformant JSON property names, the "rel" JSON name can be used, and an improved "link" JSON object name can be provided.  The "rel" context applies to the relation of the immediate links object which contains it.  The "self" link relation inside a nested "links" object provides a different semantic meaning then the "self" link relation inside a "links" object specified at the top level of a resource object.  Link relations apply to the context that link relation is found within.
+        </t>
+      </section>
+      <section title="href">
+        <t>
+          The "href" JSON name MUST be provided and defines a the url for a resource per <xref target="RFC7231"/>.  When not defined the link relation is assumed from the "link" JSON object name.  To provide conformant JSON property names, the "rel" JSON name can be used, and an improved "link" JSON object name can be provided.  The "href" SHOULD be a fully qualified domain name.
+        </t>
+      </section>
+      <section title="templates">
+        <t>
+          The "templates" JSON name SHOULD be provided.  When present it shows the semantics on how to follow defined the url specified in the "href" property.  The "templates" JSON value is a JSON object.  The JSON property names of the JSON object MUST be HTTP method verb as defined by <xref target="RFC7231"/>.  When not provided the implicity default is that only GET is supported. The JSON property value of each of these templated verbs contains the following fields:
+          <list>
+            <t>
+              "type": OPTIONAL, Type is the Content-Type identifier, Link relation, or a rel documentation url location which points to the documented semantics of the type required to follow the link.  When the verb is "GET", the "type" field MUST NOT be provided.  When a documentation location url is specified the location must point to either to the semantics of the object or an <eref target="https://github.com/OAI/OpenAPI-Specification">Open API Schema object</eref>.
+            </t>
+          </list>
+        </t>
+      </section>
+    </section>
+    <section title="Links Example">
+      <t>
+        Here is an example:
+        <figure>
+          <artwork>
+            <![CDATA[
+{
+  "resourceId": "123",
+  "other_resource": {
+    "otherResourceId": "abc",
+    "links": {
+      "self": {
+        "href": "https://example.org/resource/123",
+        "templates": {
+          "GET": {}
+        }
+      },
+      "duplicate": {
+        "rel": "https://example.org/rels/v1/duplicate",
+        "href": "https://example.org/resource/123",
+        "templates": {
+          "POST": {
+            "type": "https://example.org/rels/v1/resource"
+          }
+        }
+      }
+    }
+  },
+  "links": {
+    "self": {
+      "href": "https://example.org/resource/123",
+      "templates": {
+        "GET": {}
+      }
+    },
+    "hypermedia_other_relation": {
+      "rel": "https://example.org/rels/v1/hypermedia_other_relation",
+      "href": "https://example.org/resource/123",
+      "templates": {
+        "GET": {}
+      }
+    }
+  }
+}
+            ]]>
+          </artwork>
+        </figure>
+      </t>
+    </section>
+    <section title="Backwards Compatibility">
+      <t>
+        The "links" value MUST be statically bound to the JSON "link" name.  If the semantics of the "links" object changes, then a new "link" name must be created.  When using the short abbreviations instead of a "rel" for the "link" name, when the semantics of the object is changed, eg a new version is available, a new short abbreviation must be created for the new href.  If changing any of the "rel", "link" name, or "href" Content-Type, then the resource MUST define a new "link" name to use. 
+      </t>
+    </section>
+    <section anchor="Acknowledgements" title="Acknowledgements">
+    </section>
+    <section anchor="IANA" title="IANA Considerations">
+    </section>
+    <section anchor="Security" title="Security Considerations">
+    </section>
+  </middle>
+  <back>
+    <references title="Normative References">
+      &RFC2119;
+      &RFC8259;
+      &RFC8288;
+      &RFC7231;
+    </references>
+  </back>
+</rfc>
