@@ -25,7 +25,7 @@
 <rfc  category="std" docName="draft-wparad-json-links-01" ipr="trust200902">
   <front>
     <title abbrev="JSON+Links">JSON Hypermedia Links Notation</title>
-    <author fullname="Warren Parad" initials="WP" surname="Parad">
+    <author fullname="Warren Parad" initials="W" surname="Parad">
 <!-- <organization/> -->
       <address>
         <!-- postal><street/><city/><region/><code/><country/></postal -->
@@ -35,7 +35,7 @@
 <!-- <uri/> -->
       </address>
     </author>
-    <author fullname="Igor Sowinski" initials="IS" surname="Sowinski">
+    <author fullname="Igor Sowinski" initials="I" surname="Sowinski">
 <!-- <organization/> -->
       <address>
         <!-- postal><street/><city/><region/><code/><country/></postal -->
@@ -45,7 +45,7 @@
 <!-- <uri/> -->
       </address>
     </author>
-    <author fullname="Rafal Nowosielski" initials="RN" surname="Nowosielski">
+    <author fullname="Rafal Nowosielski" initials="R" surname="Nowosielski">
       <!-- <organization/> -->
       <address>
         <!-- postal><street/><city/><region/><code/><country/></postal -->
