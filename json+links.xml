@@ -45,6 +45,16 @@
 <!-- <uri/> -->
       </address>
     </author>
+    <author fullname="Rafal Nowosielski" initials="RN" surname="Nowosielski">
+      <!-- <organization/> -->
+      <address>
+        <!-- postal><street/><city/><region/><code/><country/></postal -->
+        <!-- <phone/> -->
+        <!-- <facsimile/> -->
+        <email>rafal@nowosielski.email</email>
+        <!-- <uri/> -->
+      </address>
+    </author>
     <date year="2018" />
 <!-- <area/> -->
 <!-- <workgroup/> -->
