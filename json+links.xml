@@ -45,6 +45,16 @@
 <!-- <uri/> -->
       </address>
     </author>
+    <author fullname="Rafal Nowosielski" initials="RN" surname="Nowosielski">
+      <!-- <organization/> -->
+      <address>
+        <!-- postal><street/><city/><region/><code/><country/></postal -->
+        <!-- <phone/> -->
+        <!-- <facsimile/> -->
+        <email>rafal@nowosielski.email</email>
+        <!-- <uri/> -->
+      </address>
+    </author>
     <date year="2018" />
 <!-- <area/> -->
 <!-- <workgroup/> -->
@@ -61,7 +71,7 @@
   <middle>
     <section title="Introduction">
       <t>
-        This document introduces the Content-Type "application/json+links" to support hypermedia linking inside JSON as defined by the <xref target="RFC8259"/>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following URI in the form of urls.  To ensure urls discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/json+links".
+        This document introduces the Content-Type "application/json+links" to support hypermedia linking inside JSON as defined by the <xref target="RFC8259"/>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following URI in the form of urls.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/json+links".
       </t>
       <t>
         The "links" JSON object name becomes a reserved word and cannot be used without implying the semantics of this document.  The "links" can be found at any depth of a JSON representation and always implying the same meaning within the context.  It is a dictionary which provides <xref target="RFC8288">web linking</xref> by defining the semanitcs of a linked representation.
