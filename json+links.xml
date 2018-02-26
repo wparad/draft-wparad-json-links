@@ -216,6 +216,41 @@
           </artwork>
         </figure>
       </t>
+      <t>
+        To include a collection of links, it MUST be presented as a first class JSON array of JSON objects.  Each object containing its own "links" object:
+        <figure>
+          <artwork>
+            <![CDATA[
+{
+  "collectionId": "collection-1",
+  "resourceCollection": [
+    {
+      "itemId": "item-1",
+      "links": {
+        "self": {
+          "href": "https://example.org/v1/items/item-1"
+        }
+      }
+    },
+    {
+      "itemId": "item-2",
+      "links": {
+        "self": {
+          "href": "https://example.org/v1/items/item-2"
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": {
+      "href": "https://example.org/v1/collections/collection-1"
+    }
+  }
+}
+            ]]>
+          </artwork>
+        </figure>
+      </t>
     </section>
     <section title="Backwards Compatibility">
       <t>
