@@ -2,6 +2,7 @@
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC6838 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6838.xml">
+<!ENTITY RFC7230 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7230.xml">
 <!ENTITY RFC7231 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7231.xml">
 <!ENTITY RFC8259 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8259.xml">
 <!ENTITY RFC8288 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8288.xml">
@@ -106,7 +107,7 @@
       </section>
       <section title="JSON Link Property Name">
         <t>
-          Inside the "links" object, contains a set of JSON name properties, each of these properties will be known simply as a "link".  Its JSON property name may be anything other than "links", including the value "link".  The JSON property value of the "link", is a "Link Object".  The property name is unique value within all the "links" objects in the whole JSON document.
+          The "links" object contains a set of JSON name properties, each of these properties will be known simply as a "link".  Its JSON property name may be anything other than "links", including the value "link".  The JSON property value of the "link", is a "Link Object".  The property name is unique value within all the "links" objects in the whole JSON document.
         </t>
       </section>
       <section title="JSON Link Property Value Object">
@@ -137,15 +138,15 @@
       </t>
       <section title="rel">
         <t>
-          The "rel" JSON name is OPTIONAL when the "link" property name is a link relation per <xref target="RFC8288"/>, if not, then the "rel" property MUST be provided.
+          The "rel" JSON name is OPTIONAL when the "link" property name is a link relation per <xref target="RFC8288"/>, if not, then the "rel" property MUST be provided.  The "rel" MUST be either an "absolute-URI" or a predefined link relation.
         </t>
         <t>
-          When not defined the link relation is assumed from the "link" JSON object name.  To provide conformant JSON property names, the "rel" JSON name can be used, and an improved "link" JSON object name can be provided as the "link" property name.  The "rel" context applies to the relation of the immediate links object which contains it.  The "self" link relation inside a nested "links" object provides a different semantic meaning then the "self" link relation inside a "links" object specified at the top level of a resource object.  Link relations apply to the context that link relation is found within.  This means that the same link relation MAY be present in a JSON representation multiple times and each it MUST specify a different "href".
+          When not defined the link relation is assumed from the "link" JSON object name.  To provide conformant JSON property names, the "rel" JSON name can be used, and an improved "link" JSON object name can be provided as the "link" property name.  The "rel" context applies to the relation of the immediate links object which contains it.  The "self" link relation inside a nested "links" object provides a different semantic meaning then the "self" link relation inside a "links" object specified at the top level of a resource object.  Link relations apply to the context that link relation is found within.  This means that the same link relation MAY be present in a JSON representation multiple times and each it SHOULD specify a different "href".
         </t>
       </section>
       <section title="href">
         <t>
-          The "href" JSON name MUST be provided and defines a the url for a resource per <xref target="RFC7231"/>.  When not defined the link relation is assumed from the "link" JSON object name.  The "href" SHOULD be a fully qualified domain name.
+          The "href" JSON name MUST be provided and defines a the url for a resource and MUST be an "absolute-URI" per <xref target="rfc7230"/>.  When not defined the link relation is assumed from the "link" JSON object name.
         </t>
       </section>
       <section title="templates">
@@ -153,7 +154,7 @@
           The "templates" JSON name SHOULD be provided.  When present it shows the semantics on how to follow the defined the url specified in the "href" property.  The "templates" JSON value is a JSON object.  The JSON property names of the JSON object MUST be HTTP method verbs as defined by <xref target="RFC7231"/>.  When not provided, the implicit default is that only GET is supported. The JSON property value of each of these templated verbs contains the following fields:
           <list>
             <t>
-              "type": OPTIONAL, Type is the media type or documentation url location which points to the documented semantics of the type required to follow the link.  When the verb is "GET", the "type" field MUST NOT be provided.  When the type is not a media type, the documentation location url is specified the location must point to either to the semantics of the object or an <eref target="https://github.com/OAI/OpenAPI-Specification">Open API Schema</eref> object.
+              * "type": OPTIONAL, Type is the media type or documentation url location which points to the documented semantics of the type required to follow the link.  When the verb is "GET", the "type" field MUST NOT be provided.  When the type is not a media type, the documentation location url is specified the location must point to either to the semantics of the object or an <eref target="https://github.com/OAI/OpenAPI-Specification">Open API Schema</eref> object.
             </t>
           </list>
         </t>
@@ -232,6 +233,7 @@
     <references title="Normative References">
       &RFC2119;
       &RFC6838;
+      &RFC7230;
       &RFC7231;
       &RFC8259;
       &RFC8288;
