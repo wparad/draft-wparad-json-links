@@ -26,7 +26,7 @@
 <!-- end of popular PIs -->
 <rfc  category="std" docName="draft-wparad-json-links-01" ipr="trust200902">
   <front>
-    <title abbrev="JSON+Links">JSON Hypermedia Links Notation</title>
+    <title abbrev="Links+JSON">JSON Hypermedia Links Notation</title>
     <author fullname="Warren Parad" initials="W" surname="Parad">
 <!-- <organization/> -->
       <address>
@@ -62,24 +62,25 @@
 <!-- <workgroup/> -->
       <keyword>Hypermedia</keyword>
       <keyword>Web Linking</keyword>
-      <keyword>json+links</keyword>
+      <keyword>links+json</keyword>
+       <keyword>json+links</keyword>
 <!-- <keyword/> -->
     <abstract>
       <t>
-        This document proposes the application/json+links media type for representing resources and their relations with hyperlinks. It treats hypermedia links as first class object which can appear throughout a JSON document.
+        This document proposes the application/links+json media type for representing resources and their relations with hyperlinks. It treats hypermedia links as first class object which can appear throughout a JSON document.
       </t>
     </abstract>
   </front>
   <middle>
     <section title="Introduction">
       <t>
-        This document introduces the media type "application/json+links" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref targ="RFC8259"></xref>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable url.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/json+links".
+        This document introduces the media type "application/links+json" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref targ="RFC8259"></xref>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable url.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/links+json".
       </t>
       <t>
         The "links" JSON object name becomes a reserved word and cannot be used without implying the semantics of this document.  The "links" can be found at multiple depths of a JSON representation and always implying the same meaning with regards to the context.  It is a dictionary which provides <xref target="RFC8288">web linking</xref> by defining the semanitcs of a linked representation.
       </t>
       <t>
-        The design of "application/json+links" proposes a straightforward model which combines the simplicity of JSON object with a predefined "links" structure.
+        The design of "application/links+json" proposes a straightforward model which combines the simplicity of JSON object with a predefined "links" structure.
       </t>
       <t>
         This document is being discussed in the <eref target="https://gitter.im/wparad/draft-wparad-json-links">draft-wparad-json-links Gitter room</eref>.
@@ -118,7 +119,7 @@
     </section>
     <section title="Reserved Words">
       <t>
-        The application/json+links reserves the following words which maintain their definition and no other value can replace them.  The are as follows:
+        The application/links+json reserves the following words which maintain their definition and no other value can replace them.  The are as follows:
         <list>
           <t>* "links": any other value will assume its meaning from the media type of the JSON body representation, except for the reserved word "links".  "links" has the semantic meaning as defined by this document.</t>
         </list>
@@ -126,7 +127,7 @@
     </section>
     <section title="Links Notation Document">
       <t>
-        A JSON Links Document uses the format described in <xref target="RFC8259"/> and has the media type "application/json+links".  The media type provides a polymorphic transform on JSON and introduces only a Hypermedia Links Notation for expanding a "links" object value.  Therefore "application/json+links" is of media type "application/json".
+        A JSON Links Document uses the format described in <xref target="RFC8259"/> and has the media type "application/links+json".  The media type provides a polymorphic transform on JSON and introduces only a Hypermedia Links Notation for expanding a "links" object value.  Therefore "application/links+json" is of media type "application/json".
       </t>
       <t>
         The "links" object in a JSON object.  The object contains "link" properties which each uniquely define a related resource.  The JSON values associated with those names MUST be a JSON object which explain how to navigate to that resource.
