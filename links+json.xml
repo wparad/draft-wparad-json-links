@@ -74,7 +74,7 @@
   <middle>
     <section title="Introduction">
       <t>
-        This document introduces the media type "application/links+json" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref targ="RFC8259"></xref>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable url.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/links+json".
+        This document introduces the media type "application/links+json" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref target="RFC8259"/>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable URL.  To ensure URLs are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/links+json".
       </t>
       <t>
         The "links" JSON object name becomes a reserved word and cannot be used without implying the semantics of this document.  The "links" can be found at multiple depths of a JSON representation and always implying the same meaning with regards to the context.  It is a dictionary which provides <xref target="RFC8288">web linking</xref> by defining the semanitcs of a linked representation.
@@ -147,15 +147,15 @@
       </section>
       <section title="href">
         <t>
-          The "href" JSON name MUST be provided and defines a the url for a resource and MUST be an "absolute-URI" per <xref target="rfc7230"/>.  When not defined the link relation is assumed from the "link" JSON object name.
+          The "href" JSON name MUST be provided and defines a the URL for a resource and MUST be an "absolute-URI" per <xref target="RFC7230"/>.  When not defined the link relation is assumed from the "link" JSON object name.
         </t>
       </section>
       <section title="templates">
         <t>
-          The "templates" JSON name SHOULD be provided.  When present it shows the semantics on how to follow the defined the url specified in the "href" property.  The "templates" JSON value is a JSON object.  The JSON property names of the JSON object MUST be HTTP method verbs as defined by <xref target="RFC7231"/>.  When not provided, the implicit default is that only GET is supported. The JSON property value of each of these templated verbs contains the following fields:
+          The "templates" JSON name SHOULD be provided.  When present it shows the semantics on how to follow the defined the URL specified in the "href" property.  The "templates" JSON value is a JSON object.  The JSON property names of the JSON object MUST be HTTP method verbs as defined by <xref target="RFC7231"/>.  When not provided, the implicit default is that only GET is supported. The JSON property value of each of these templated verbs contains the following fields:
           <list>
             <t>
-              * "type": OPTIONAL, Type is the media type or documentation url location which points to the documented semantics of the type required to follow the link.  When the verb is "GET", the "type" field MUST NOT be provided.  When the type is not a media type, the documentation location url is specified the location must point to either to the semantics of the object or an <eref target="https://github.com/OAI/OpenAPI-Specification">Open API Schema</eref> object.
+              * "type": OPTIONAL, Type is the media type or documentation URL location which points to the documented semantics of the type required to follow the link.  When the verb is "GET", the "type" field MUST NOT be provided.  When the type is not a media type, the documentation location URL is specified the location must point to either to the semantics of the object or an <eref target="https://github.com/OAI/OpenAPI-Specification">Open API Schema</eref> object.
             </t>
           </list>
         </t>
