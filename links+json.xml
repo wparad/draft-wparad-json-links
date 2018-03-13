@@ -74,7 +74,7 @@
   <middle>
     <section title="Introduction">
       <t>
-        This document introduces the media type "application/links+json" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref targ="RFC8259"></xref>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable url.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/links+json".
+        This document introduces the media type "application/links+json" to support hypermedia linking inside JSON as defined by <xref target="RFC6838"/> and <xref target="RFC8259"/>.  Hypermedia linking provides a dynamic way to navigate from one JSON representation to another JSON representation by following a URI in the form of a navigatable url.  To ensure urls are discoverable this standard creates the notion of a first class "links" JSON object name.  This property MUST adhere to the format in this document, and provides an a priori discoverability to representations which are of the media type "application/links+json".
       </t>
       <t>
         The "links" JSON object name becomes a reserved word and cannot be used without implying the semantics of this document.  The "links" can be found at multiple depths of a JSON representation and always implying the same meaning with regards to the context.  It is a dictionary which provides <xref target="RFC8288">web linking</xref> by defining the semanitcs of a linked representation.
@@ -147,7 +147,7 @@
       </section>
       <section title="href">
         <t>
-          The "href" JSON name MUST be provided and defines a the url for a resource and MUST be an "absolute-URI" per <xref target="rfc7230"/>.  When not defined the link relation is assumed from the "link" JSON object name.
+          The "href" JSON name MUST be provided and defines a the url for a resource and MUST be an "absolute-URI" per <xref target="RFC7230"/>.  When not defined the link relation is assumed from the "link" JSON object name.
         </t>
       </section>
       <section title="templates">
