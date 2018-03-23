@@ -24,7 +24,7 @@
 <?rfc compact="yes" ?> <!-- do not start each main section on a new page -->
 <?rfc subcompact="no" ?> <!-- keep one blank line between list items -->
 <!-- end of popular PIs -->
-<rfc  category="std" docName="draft-wparad-json-links-00" ipr="trust200902">
+<rfc  category="info" docName="draft-wparad-json-links-01" ipr="trust200902">
   <front>
     <title abbrev="Links+JSON">JSON Hypermedia Links Notation</title>
     <author fullname="Warren Parad" initials="W" surname="Parad">
