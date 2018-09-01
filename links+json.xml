@@ -24,7 +24,7 @@
 <?rfc compact="yes" ?> <!-- do not start each main section on a new page -->
 <?rfc subcompact="no" ?> <!-- keep one blank line between list items -->
 <!-- end of popular PIs -->
-<rfc  category="info" docName="draft-wparad-json-links-01" ipr="trust200902">
+<rfc  category="std" docName="draft-wparad-json-links-03" ipr="trust200902">
   <front>
     <title abbrev="Links+JSON">JSON Hypermedia Links Notation</title>
     <author fullname="Warren Parad" initials="W" surname="Parad">
@@ -256,6 +256,9 @@
     <section title="Backwards Compatibility">
       <t>
         The "links" value MUST be statically bound to the JSON "link" name.  If the semantics of the "links" object changes, then a new "link" name must be created.  When using the short abbreviations instead of a "rel" for the "link" name, when the semantics of the object is changed, eg a new version is available, a new short abbreviation must be created for the new href.  If changing any of the "rel", "link" name, or "href" media type, then the resource MUST define a new "link" name to use.
+      </t>
+      <t>
+        The media type "application/links+json" MUST utilize only the canonical representation of a link.  This means that a link provided in the "links" SHOULD not be duplicated and provided under a different link relation for the purpose of changing the representation.  Each rel points to the semantic definition of the resource, while the resource can be duplicated in the "links" object, to vary the representation of a resource the "type" property of the "template" object should be utilized.  To provide canonical URL links to resource representations each representation MUST utilize a different link relation.  Because of the complexitiy associated with expectation on the "default" representation of a resource, to adhere to this RFC the "type" property SHOULD be used and summarily the "ACCEPT" header to request the appropriate representation, and the "links" object SHOULD NOT contain different representations of the same resource.  Since resources are linked to and not necessarily representations it often does not make sense to iterate the representation links, but instead provide a list of representations for a link.
       </t>
     </section>
     <section anchor="Acknowledgements" title="Acknowledgements">
